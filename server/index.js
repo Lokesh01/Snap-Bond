@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
+import authRoutes from "./routes/auth.js";
 
 // * configurations
 const __filename = fileURLToPath(import.meta.url); // example /home/user/server/index.js
@@ -40,6 +41,9 @@ const upload = multer({ storage });
 //* User Authentication
 app.post("/auth/register",upload.single("picture"),register);
 
+/* Routes */
+app.use("/auth",authRoutes);
+
 /* Mongoose setup */
 const PORT = process.env.PORT || 6001;
 mongoose
@@ -48,4 +52,4 @@ mongoose
     mongoose.set('strict', true); // Enable strict mode after connection
     app.listen(PORT, () => console.log(`connected on server port: ${PORT}`));
   })
-  .catch((error) => console.log(`${error} did not connect !`));
+  .catch((error) => console.log(`${error.message} did not connect !`));
