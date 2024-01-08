@@ -10,6 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
 
 // * configurations
 const __filename = fileURLToPath(import.meta.url); // example /home/user/server/index.js
@@ -38,18 +39,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 /* Routes with files */
-//* User Authentication
-app.post("/auth/register",upload.single("picture"),register);
+app.post("/auth/register", upload.single("picture"), register); //* User Registeration
 
 /* Routes */
-app.use("/auth",authRoutes);
+app.use("/auth", authRoutes); //* user authentication
+app.use("/users", userRoutes); //* route for user page
 
-/* Mongoose setup */
+/* Mongoose Setup */
 const PORT = process.env.PORT || 6001;
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
-    mongoose.set('strict', true); // Enable strict mode after connection
+    mongoose.set("strict", true); // Enable strict mode after connection
     app.listen(PORT, () => console.log(`connected on server port: ${PORT}`));
   })
   .catch((error) => console.log(`${error.message} did not connect !`));
