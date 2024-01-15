@@ -11,6 +11,12 @@ import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
+import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./controllers/posts.js";
+import User from "./models/User.js";
+import { posts, users } from "./data/index.js";
+import Post from "./models/Post.js";
 
 // * configurations
 const __filename = fileURLToPath(import.meta.url); // example /home/user/server/index.js
@@ -40,10 +46,12 @@ const upload = multer({ storage });
 
 /* Routes with files */
 app.post("/auth/register", upload.single("picture"), register); //* User Registeration
+app.post("/posts",verifyToken,upload.single("picture"),createPost); //* adding new post
 
 /* Routes */
 app.use("/auth", authRoutes); //* user authentication
 app.use("/users", userRoutes); //* route for user page
+app.use("/posts", postRoutes); //* route for posts
 
 /* Mongoose Setup */
 const PORT = process.env.PORT || 6001;
@@ -52,5 +60,9 @@ mongoose
   .then(() => {
     mongoose.set("strict", true); // Enable strict mode after connection
     app.listen(PORT, () => console.log(`connected on server port: ${PORT}`));
+
+    //* adding temp data only one time
+    User.insertMany(users);
+    Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error.message} did not connect !`));
