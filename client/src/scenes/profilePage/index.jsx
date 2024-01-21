@@ -6,7 +6,7 @@ import Navbar from "../navbar";
 import UserWidget from "../widgets/UserWidget";
 import FriendListWidget from "../widgets/FriendListWidget";
 import MyPostWidget from "../widgets/MyPostWidget";
-import PostWidget from "../widgets/PostWidget";
+import PostsWidget from "../widgets/PostsWidget";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
   const getUser = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/users/${userId}`,
+      `${process.env.REACT_APP_SERVER_URL}/users/${userId}`,
       {
         method: "GET",
         headers: {
@@ -56,7 +56,7 @@ const ProfilePage = () => {
         >
           <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
-          <PostWidget userId={userId} isProfile={true} />
+          <PostsWidget userId={userId} isProfile={true} />
         </Box>
       </Box>
     </Box>

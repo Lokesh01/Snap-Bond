@@ -1,10 +1,9 @@
-import { useTheme } from "@emotion/react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../store";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import Friend from "../../components/Friend";
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import {
   ChatBubbleOutlineOutlined,
@@ -36,15 +35,17 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
-    console.log(postId," ",postUserId);
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/posts/${postId}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: loggedInUserId }),
+      }
+    );
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
@@ -57,6 +58,9 @@ const PostWidget = ({
         subtitle={location}
         userPicturePath={userPicturePath}
       />
+
+      <Divider sx={{marginTop: "0.25rem"}} />
+
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
       </Typography>
