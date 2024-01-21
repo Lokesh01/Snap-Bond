@@ -7,7 +7,8 @@ export const verifyToken = async (req, res, next) => {
     // * The HTTP status code 403 Forbidden is used to indicate that the server understood the request you made, but it refuses to authorize it.
     if (!token) return res.status(403).send("Access Denied !");
 
-    if (token.startsWith("Bearer ")) {
+    //* The "Bearer" prefix explicitly signals to the server that the following string is an access token, not a password or other credential type.
+    if (token.startsWith("Bearer ")) { 
       token = token.slice(7, token.length).trimLeft();
     }
 

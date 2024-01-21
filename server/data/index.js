@@ -11,8 +11,6 @@ const userIds = [
   new mongoose.Types.ObjectId(),
 ];
 
-//* temporary data for testing purposes
-
 export const users = [
   {
     _id: userIds[0],
@@ -64,8 +62,8 @@ export const users = [
   },
   {
     _id: userIds[3],
-    firstName: "Lisa",
-    lastName: "Ann",
+    firstName: "Whatcha",
+    lastName: "Doing",
     email: "whatchadoing@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p6.jpeg",
@@ -96,8 +94,8 @@ export const users = [
   },
   {
     _id: userIds[5],
-    firstName: "Harish",
-    lastName: "Verma",
+    firstName: "Harvey",
+    lastName: "Dunn",
     email: "harveydunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p7.jpeg",
@@ -112,8 +110,8 @@ export const users = [
   },
   {
     _id: userIds[6],
-    firstName: "Ramesh",
-    lastName: "Sharma",
+    firstName: "Carly",
+    lastName: "Vowel",
     email: "carlyvowel@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p8.jpeg",
@@ -129,7 +127,7 @@ export const users = [
   {
     _id: userIds[7],
     firstName: "Jessica",
-    lastName: "Joseph",
+    lastName: "Dunn",
     email: "jessicadunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picturePath: "p9.jpeg",

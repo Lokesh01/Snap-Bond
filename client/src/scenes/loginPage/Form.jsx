@@ -45,7 +45,6 @@ const registerSchema = yup.object().shape({
   picture: yup
     .string()
     .required("Profile picture is required")
-    .url("Must be a valid image URL"),
 });
 
 const loginSchema = yup.object().shape({
@@ -90,13 +89,15 @@ const Form = () => {
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
+    console.log("inside register function");
+    console.log(values);
     for (let value in values) {
       formData.append(value, values[value]);
     }
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      `${process.env.REACT_APP_SERVER_URL}/auth/register`,
       {
         method: "POST",
         body: formData,

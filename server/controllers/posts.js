@@ -19,7 +19,7 @@ export const createPost = async (req, res) => {
     });
     await newPost.save();
 
-    const post = await Post.find(); // sending all the posts after updating
+    const post = await Post.find().sort({ _id: -1 });// sending all the posts after updating
     res.status(200).json(post);
   } catch (error) {
     //*409 indicate that the request could not be completed due to a conflict with the current state of the target resource.
@@ -30,7 +30,7 @@ export const createPost = async (req, res) => {
 /* Read */
 export const getFeedPosts = async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ _id: -1 }); // latest posts will be at top
     res.status(200).json(posts);
   } catch (error) {
     res.status(404).json({ message: error.message });

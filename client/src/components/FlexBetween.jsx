@@ -3,7 +3,7 @@ import { styled } from "@mui/system"; // helps to create styled components with 
 
 const FlexBetween = styled(Box)({
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
 });
 
