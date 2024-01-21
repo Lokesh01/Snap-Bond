@@ -24,7 +24,7 @@ const LoginPage = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
+        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem", pl: isNonMobileScreens && "5rem" }}>
           Welcome to Snap-Bond, the best platform for making new bonds 🤝!
         </Typography>
         <Form />
