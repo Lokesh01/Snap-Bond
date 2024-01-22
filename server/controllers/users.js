@@ -1,8 +1,5 @@
 import User from "../models/User.js";
 
-// todo: separate the logic for formatting friends data here to avoid code duplication
-function formattedFriendsData() {}
-
 /* Read */
 export const getUser = async (req, res) => {
   try {
