@@ -58,7 +58,7 @@ services:
     # specify environment variables for the api service
     # for demo purposes, we're using a local mongodb instance
     environment: 
-      MONGO_URL: mongodb+srv://Negi01:xbHqi4lOm9RPBMq8@cluster0.df6vz2b.mongodb.net/
+      MONGO_URL: place your mongodb url here
     
     # establish docker compose watch mode for the api service
     develop:
